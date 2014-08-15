@@ -1,0 +1,6 @@
+{exec} = require 'child_process'
+task 'build', 'Build project from app/coffee/*.coffee to public/js/*.js', ->
+  exec 'coffee --compile --watch --output ../public/js/ ../app/coffee/',
+  (err, stdout, stderr) ->
+    throw err if err
+    console.log stdout + stderr

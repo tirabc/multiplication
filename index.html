@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Multiplication</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="public/css/main.css" type="text/css"/>
+    <link rel="stylesheet" href="public/css/style.css" type="text/css"/>
+  </head>
+  <body>
+
+    <div id="loader">
+      <div class="overlay"></div>
+      <div class="spinner">Chargement</div>
+    </div>
+
+    <div id="main"></div>
+
+    <!-- TEMPLATES -->
+
+    <script type="text/template" id="tpl-app">
+
+      <div id="notification"></div>
+      <div id="wrapper">
+        <div id="topbar" class="topbar grid grid-gutter-half">
+          <div class="grid-item one-third left">
+            <div class="inner">Test</div>
+          </div>
+          <div class="grid-item one-third center">
+            <div class="inner"><img src="public/img/menu.png" alt="Menu"></div>
+          </div>
+          <div class="grid-item one-third right">
+            <div class="inner">Brand</div>
+          </div>
+        </div>
+        <div id="stack" class="grid grid-gutter-none"></div>
+      </div>
+
+    </script>
+
+    <script type="text/template" id="tpl-home">
+      
+      <div class="grid-item two-thirds">
+        <div class="tile link" data-link="play">
+          <span class="symbol">Jouer</span>
+        </div>
+      </div>
+
+      <div class="grid-item one-third">
+        <div class="tile link" data-link="tables">
+          <span class="symbol">Revoir</span>
+        </div>
+      </div>
+
+    </script>
+
+    <script type="text/template" id="tpl-tables">
+
+      <div id="panel-tables">
+        TABLES
+      </div>
+      
+      <div class="grid-item one-third">
+        <div class="tile link" data-link="home">
+          <span class="symbol">&larr;</span>
+        </div>
+      </div>
+
+    </script>
+    
+    <script type="text/template" id="tpl-play">
+
+      <div class="operation grid grid-gutter-none">
+        <span class="grid-item one-fifth symbol">{{first}}</span>
+        <span class="grid-item one-fifth symbol">x</span>
+        <span class="grid-item one-fifth symbol">{{second}}</span>
+        <span class="grid-item one-fifth symbol">=</span>
+        <span class="grid-item one-fifth symbol result">&nbsp;</span>
+      </div>
+      
+      <div class="keyboard grid grid-gutter-none">
+        <div class="grid-item one-third tile">
+          <span class="symbol">1</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">2</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">3</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">4</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">5</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">6</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">7</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">8</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">9</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">&larr;</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">0</span>
+        </div>
+        <div class="grid-item one-third tile">
+          <span class="symbol">&cross;</span>
+        </div>
+      </div>
+
+      <div class="action grid grid-gutter-none">
+        <div class="grid-item one-whole">
+          {{^next}}<button class="button correction">Corriger</button>{{/next}}
+          {{#next}}<button class="button next">Opération suivante</button>{{/next}}
+        </div>
+      </div>
+    
+    </script>
+
+    <!-- END TEMPLATES -->
+
+    <script src="public/js/namespace.js"></script>
+
+    <!-- LIBS -->
+
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/underscore.min.js"></script>
+    <script src="libs/backbone.min.js"></script>
+    <script src="libs/mustache.min.js"></script>
+    <script src="libs/backbone.localStorage-min.js"></script>
+    <script src="libs/raphael-min.js"></script>
+    <script src="libs/morris.min.js"></script>
+
+    <!-- END LIBS -->
+
+    <!-- MODELS -->
+
+    <!--<script src="public/js/models/run.model.js"></script>-->
+
+    <!-- END MODELS -->
+
+    <!-- COLLECTIONS -->
+
+    <!--<script src="public/js/collections/runs.collection.js"></script>-->
+
+    <!-- END COLLECTIONS -->
+
+    <!-- VIEWS -->
+
+    <script src="public/js/views/app.view.js"></script>
+    <script src="public/js/views/page.view.js"></script>
+    <script src="public/js/views/home.view.js"></script>
+    <script src="public/js/views/play.view.js"></script>
+    <script src="public/js/views/tables.view.js"></script>
+
+    <!-- END VIEWS -->
+
+    <!-- BOOTSTRAP -->
+
+    <script src="public/js/router.js"></script>
+    <script src="public/js/app.js"></script>
+
+    <!-- END BOOTSTRAP -->
+
+  </body>
+</html>

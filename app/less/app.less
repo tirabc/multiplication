@@ -1,0 +1,61 @@
+// imports
+
+//@import "reset";
+//@import "grid";
+@import "mixins";
+@import "elements";
+
+// grid vars
+//@columns: 12;
+//@column-width: 60;
+//@gutter-width: 0;
+//@total-width: 100%;
+
+// box sizing
+*{
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// vars
+@bg: #333;
+@color-light: #FEFEFE;
+@color-dark: #333;
+@space: 1em;
+
+// colors
+@blue: #4A95EF;
+@green: #81CF5C;
+@yellow: #FFF2CF;
+@primary: @blue;
+
+// z-index
+@front: 100;
+@middle: 50;
+@back: 1;
+
+// rules
+
+html{
+  height: 100%;
+}
+
+body{
+  background: @bg;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+#main,#wrapper{
+  height: 100%;
+  overflow-x: hidden;
+}
+
+// global
+
+#loader{
+  .loader();
+}

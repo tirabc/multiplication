@@ -1,0 +1,206 @@
+.center {
+  margin: 0 auto;
+}
+.loader .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #333333;
+  z-index: 1;
+  display: block;
+}
+.loader .spinner {
+  position: fixed;
+  z-index: 100;
+  color: #fefefe;
+  height: 20%;
+  margin: 40% auto;
+}
+.page {
+  z-index: 100;
+}
+.panel {
+  padding: 1em;
+  background: #333333;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #333333 0%, #1a1a1a 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #333333), color-stop(100%, #1a1a1a));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #333333 0%, #1a1a1a 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #333333 0%, #1a1a1a 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #333333 0%, #1a1a1a 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #333333 0%, #1a1a1a 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@light', endColorstr='@dark', GradientType=0);
+  /* IE6-9 */
+}
+.tile {
+  background: #fefefe;
+  padding: 1em;
+  text-align: center;
+}
+.tile .measure {
+  font-size: 1.5em;
+  font-weight: bolder;
+}
+.tile .unit {
+  font-size: 1em;
+}
+.tile .symbol {
+  font-size: 3em;
+  font-weight: bolder;
+}
+.tile.link {
+  cursor: pointer;
+}
+.tile.link:hover {
+  color: #4a95ef;
+}
+.topbar {
+  background: transparent;
+  color: #fefefe;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+.topbar .left {
+  text-align: left;
+}
+.topbar .center {
+  text-align: center;
+}
+.topbar .right {
+  text-align: right;
+}
+.inner {
+  padding: 1em;
+}
+.page {
+  background: beige;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  -webkit-transition: transform 0.4s ease;
+  -moz-transition: transform 0.4s ease;
+  -ms-transition: transform 0.4s ease;
+  -o-transition: transform 0.4s ease;
+  transition: transform 0.4s ease;
+  transform: translate3d(100%, 0, 0);
+}
+.page.is-visible {
+  transform: translate3d(0, 0, 0);
+}
+.operation {
+  margin: 10px;
+  background: #333333;
+  border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+.operation span {
+  text-align: center;
+  color: #FEFEFE;
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 10px;
+}
+.operation span.result {
+  background: #FEFEFE;
+  color: #4a95ef;
+}
+.keyboard {
+  margin: 10px;
+}
+.keyboard .tile {
+  cursor: pointer;
+  background: #555555;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #555555 0%, #333333 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #555555), color-stop(100%, #333333));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #555555 0%, #333333 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #555555 0%, #333333 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #555555 0%, #333333 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #555555 0%, #333333 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@light', endColorstr='@dark', GradientType=0);
+  /* IE6-9 */
+  color: #FEFEFE;
+  border-right: solid 1px #777;
+}
+.keyboard .tile:nth-child(3n) {
+  border-right: none;
+}
+.keyboard .tile:active {
+  background: #81cf5c;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #81cf5c 0%, #75ca4c 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #81cf5c), color-stop(100%, #75ca4c));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #81cf5c 0%, #75ca4c 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #81cf5c 0%, #75ca4c 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #81cf5c 0%, #75ca4c 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #81cf5c 0%, #75ca4c 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@light', endColorstr='@dark', GradientType=0);
+  /* IE6-9 */
+}
+.action {
+  margin: 10px;
+}
+.action .correction,
+.action .next {
+  width: 100%;
+  padding: 1em;
+}
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
+body {
+  background: #333333;
+  overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+#main,
+#wrapper {
+  height: 100%;
+  overflow-x: hidden;
+}
+#loader .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #333333;
+  z-index: 1;
+  display: block;
+}
+#loader .spinner {
+  position: fixed;
+  z-index: 100;
+  color: #fefefe;
+  height: 20%;
+  margin: 40% auto;
+}

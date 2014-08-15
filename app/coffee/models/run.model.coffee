@@ -1,0 +1,1 @@
+class Tracker.Models.Run extends Backbone.Model

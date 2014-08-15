@@ -1,0 +1,128 @@
+.loader{
+  .overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: @color-dark;
+    z-index: @back;
+    display: block;
+  }
+  .spinner{
+    position: fixed;
+    z-index: @front;
+    color: @color-light;
+    height: 20%;
+    margin: 40% auto;
+  }
+}
+
+.page{
+  z-index: @front;
+}
+
+.panel{
+  padding: @space;
+  .gradient(@bg,darken(@bg,10%));
+}
+
+.tile{
+  background: @color-light;
+  padding: 1em;
+  text-align: center;
+  .measure{
+    font-size: 1.5em;
+    font-weight: bolder;
+  }
+  .unit{
+    font-size: 1em;
+  }
+  .symbol{
+    font-size: 3em;
+    font-weight: bolder;
+  }
+  &.link{
+    cursor: pointer;
+    &:hover{
+      color: @blue;
+    }
+  }
+}
+
+.topbar{
+  background: transparent;
+  color: @color-light;
+  font-weight: bolder;
+  text-transform: uppercase;
+
+  .left{
+    text-align: left;
+  }
+  .center{
+    text-align: center;
+  }
+  .right{
+    text-align: right;
+  }
+
+}
+
+.inner{
+  padding: 1em;
+}
+
+.page{
+  background: beige;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: @front;
+  .transition(transform,0.4s,ease); 
+  transform: translate3d(100%, 0, 0);
+  &.is-visible{
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.operation{
+  margin: 10px;
+  background: @color-dark;
+  .border-radius(4px);
+  span{
+    text-align: center;
+    color: #FEFEFE;
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 10px;
+    &.result{
+      background: #FEFEFE;
+      color: @blue;
+    }
+  }
+}
+
+.keyboard{
+  margin: 10px;
+  .tile{
+    cursor: pointer;
+    .gradient(#555,#333);
+    color: #FEFEFE;
+    border-right: solid 1px #777;
+    &:nth-child(3n){
+      border-right: none;
+    }
+    &:active{
+      .gradient(@green,darken(@green,4%));
+    }
+  }
+}
+
+.action{
+  margin: 10px;
+  .correction,.next{
+    width: 100%;
+    padding: 1em;
+  }
+}
