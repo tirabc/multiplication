@@ -24,13 +24,13 @@
       <div id="wrapper">
         <div id="topbar" class="topbar grid grid-gutter-half">
           <div class="grid-item one-third left">
-            <div class="inner">Test</div>
+            <div class="inner">Multiplication</div>
           </div>
           <div class="grid-item one-third center">
-            <div class="inner"><img src="public/img/menu.png" alt="Menu"></div>
+            <div class="inner"><!--<img src="public/img/menu.png" alt="Menu">--></div>
           </div>
           <div class="grid-item one-third right">
-            <div class="inner">Brand</div>
+            <div class="inner"><!--Brand--></div>
           </div>
         </div>
         <div id="stack" class="grid grid-gutter-none"></div>
@@ -71,48 +71,48 @@
     <script type="text/template" id="tpl-play">
 
       <div class="operation grid grid-gutter-none">
-        <span class="grid-item one-fifth symbol">{{first}}</span>
-        <span class="grid-item one-fifth symbol">x</span>
-        <span class="grid-item one-fifth symbol">{{second}}</span>
-        <span class="grid-item one-fifth symbol">=</span>
-        <span class="grid-item one-fifth symbol result">&nbsp;</span>
+        <span class="grid-item one-sixth symbol">{{first}}</span>
+        <span class="grid-item one-sixth symbol">x</span>
+        <span class="grid-item one-sixth symbol">{{second}}</span>
+        <span class="grid-item one-sixth symbol">=</span>
+        <span class="grid-item one-third symbol result">&nbsp;</span>
       </div>
       
       <div class="keyboard grid grid-gutter-none">
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile number">
           <span class="symbol">1</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile number">
           <span class="symbol">2</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile number">
           <span class="symbol">3</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile number">
           <span class="symbol">4</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile number">
           <span class="symbol">5</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile number">
           <span class="symbol">6</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile number">
           <span class="symbol">7</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile number">
           <span class="symbol">8</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile number">
           <span class="symbol">9</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile delete">
           <span class="symbol">&larr;</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile number">
           <span class="symbol">0</span>
         </div>
-        <div class="grid-item one-third tile">
+        <div class="grid-item one-third tile cancel">
           <span class="symbol">&cross;</span>
         </div>
       </div>
@@ -122,6 +122,15 @@
           {{^next}}<button class="button correction">Corriger</button>{{/next}}
           {{#next}}<button class="button next">Opération suivante</button>{{/next}}
         </div>
+      </div>
+      
+      <div id="feedback">
+        {{#correct}}
+        <p>Cool</p>
+        {{/correct}}
+        {{^correct}}
+        <p>Nonnnn</p>
+        {{/correct}}
       </div>
     
     </script>

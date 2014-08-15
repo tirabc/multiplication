@@ -63,7 +63,8 @@
   color: #4a95ef;
 }
 .topbar {
-  background: transparent;
+  height: 10%;
+  background: #4a95ef;
   color: #fefefe;
   font-weight: bolder;
   text-transform: uppercase;
@@ -85,7 +86,7 @@
   position: absolute;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 90%;
   z-index: 100;
   -webkit-transition: transform 0.4s ease;
   -moz-transition: transform 0.4s ease;
@@ -98,28 +99,29 @@
   transform: translate3d(0, 0, 0);
 }
 .operation {
-  margin: 10px;
+  height: 30%;
   background: #333333;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
 }
 .operation span {
+  height: 100%;
+  padding: 60px 0;
+  line-height: 60px;
+  font-size: 60px;
   text-align: center;
   color: #FEFEFE;
-  font-size: 20px;
   font-weight: bolder;
-  padding: 10px;
 }
 .operation span.result {
   background: #FEFEFE;
   color: #4a95ef;
 }
 .keyboard {
-  margin: 10px;
+  height: 50%;
 }
 .keyboard .tile {
   cursor: pointer;
+  height: 25%;
+  padding: 0;
   background: #555555;
   /* Old browsers */
   background: -moz-linear-gradient(top, #555555 0%, #333333 100%);
@@ -161,12 +163,15 @@
   /* IE6-9 */
 }
 .action {
-  margin: 10px;
+  height: 20%;
 }
-.action .correction,
-.action .next {
+.action > div {
+  height: 100%;
+}
+.action > div .correction,
+.action > div .next {
+  height: 100%;
   width: 100%;
-  padding: 1em;
 }
 * {
   -moz-box-sizing: border-box;

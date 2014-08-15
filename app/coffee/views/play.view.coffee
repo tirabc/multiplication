@@ -3,14 +3,39 @@ class Tracker.Views.Play extends Tracker.Views.Page
   name: "play"
   template: $("#tpl-play").html()
   events:
-    "click .keyboard>.tile": "numberkey"
+    "click .keyboard>.tile.number": "numberkey"
+    "click .keyboard>.tile.delete": "del"
+    "click .keyboard>.tile.cancel": "cancel"
     "click .correction": "correction"
   className: "page"
 
 
   initialize: () ->
-    _.bindAll(@,'render','numberkey','correction')
+    _.bindAll(@,'render','numberkey','correction','del','cancel')
     #Tracker.Views.Page.prototype.initialize.call(@)
+  
+  del: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    
+    if(!@resultDiv || !@userInput)
+      console.log('error no div and userinput')
+      return false
+    
+    @userInput = @resultDiv.text()
+    @userInput = parseInt(@userInput.substr(0,@userInput.length-1)) || ""
+    @resultDiv.text(@userInput)
+    
+    
+  cancel: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    
+    if(!@resultDiv || !@userInput)
+      console.log('error no div and userinput')
+      return false
+    
+    @resultDiv.text("")
   
   numberkey: (e) ->
     if(!@resultDiv)

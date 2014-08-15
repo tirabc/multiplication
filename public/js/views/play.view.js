@@ -15,14 +15,38 @@
     Play.prototype.template = $("#tpl-play").html();
 
     Play.prototype.events = {
-      "click .keyboard>.tile": "numberkey",
+      "click .keyboard>.tile.number": "numberkey",
+      "click .keyboard>.tile.delete": "del",
+      "click .keyboard>.tile.cancel": "cancel",
       "click .correction": "correction"
     };
 
     Play.prototype.className = "page";
 
     Play.prototype.initialize = function() {
-      return _.bindAll(this, 'render', 'numberkey', 'correction');
+      return _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel');
+    };
+
+    Play.prototype.del = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!this.resultDiv || !this.userInput) {
+        console.log('error no div and userinput');
+        return false;
+      }
+      this.userInput = this.resultDiv.text();
+      this.userInput = parseInt(this.userInput.substr(0, this.userInput.length - 1)) || "";
+      return this.resultDiv.text(this.userInput);
+    };
+
+    Play.prototype.cancel = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!this.resultDiv || !this.userInput) {
+        console.log('error no div and userinput');
+        return false;
+      }
+      return this.resultDiv.text("");
     };
 
     Play.prototype.numberkey = function(e) {
