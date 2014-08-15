@@ -15,13 +15,14 @@
     Play.prototype.template = $("#tpl-play").html();
 
     Play.prototype.events = {
-      "click .tile": "numberkey"
+      "click .keyboard>.tile": "numberkey",
+      "click .correction": "correction"
     };
 
     Play.prototype.className = "page";
 
     Play.prototype.initialize = function() {
-      return _.bindAll(this, 'render', 'numberkey');
+      return _.bindAll(this, 'render', 'numberkey', 'correction');
     };
 
     Play.prototype.numberkey = function(e) {
@@ -29,17 +30,36 @@
       if (!this.resultDiv) {
         this.resultDiv = $('.result');
       }
-      this.result = this.resultDiv.text();
+      if (!this.userInput) {
+        this.userInput = new String;
+      } else {
+        this.userInput = this.resultDiv.text();
+      }
       number = $(e.currentTarget).text();
-      return this.resultDiv.text(this.result + parseInt(number));
+      this.resultDiv.text(this.userInput + parseInt(number));
+      return this.userInput = this.userInput + parseInt(number);
+    };
+
+    Play.prototype.correction = function(e) {
+      var result;
+      this.userResult = parseInt(this.userInput);
+      console.log(this.userResult);
+      result = this.first * this.second;
+      if (this.userResult !== result) {
+        return alert("error");
+      } else {
+        return alert("ok");
+      }
     };
 
     Play.prototype.render = function() {
       var json, output;
+      this.first = Math.floor(Math.random() * 10) + 1;
+      this.second = Math.floor(Math.random() * 10) + 1;
       json = {
-        first: Math.floor(Math.random() * 10) + 1,
-        second: Math.floor(Math.random() * 10) + 1,
-        next: false
+        "first": this.first,
+        "second": this.second,
+        "next": false
       };
       output = Mustache.to_html(this.template, json);
       this.$el.html(output);

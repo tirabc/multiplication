@@ -5,7 +5,7 @@ class Tracker.Views.Page extends Backbone.View
   
   initialize: () ->
     console.log("page init")
-    @events = $.merge(@super_events,@events)
+    #@events = $.merge(@super_events,@events)
     _.bindAll(@,'navigate')
     @
     

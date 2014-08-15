@@ -16,7 +16,6 @@
 
     Page.prototype.initialize = function() {
       console.log("page init");
-      this.events = $.merge(this.super_events, this.events);
       _.bindAll(this, 'navigate');
       return this;
     };
