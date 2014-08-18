@@ -2,16 +2,20 @@ class Tracker.Views.Play extends Tracker.Views.Page
 	
   name: "play"
   template: $("#tpl-play").html()
+  feedback_template: $("#tpl-feedback").html()
   events:
     "click .keyboard>.tile.number": "numberkey"
     "click .keyboard>.tile.delete": "del"
     "click .keyboard>.tile.cancel": "cancel"
     "click .correction": "correction"
+    "click .overlay": "close_feedback"
+    "click .close": "close_feedback"
+    "click .next": "reset"
   className: "page"
 
 
   initialize: () ->
-    _.bindAll(@,'render','numberkey','correction','del','cancel')
+    _.bindAll(@,'render','numberkey','correction','del','cancel','close_feedback','reset')
     #Tracker.Views.Page.prototype.initialize.call(@)
   
   del: (e) ->
@@ -26,7 +30,6 @@ class Tracker.Views.Play extends Tracker.Views.Page
     @userInput = parseInt(@userInput.substr(0,@userInput.length-1)) || ""
     @resultDiv.text(@userInput)
     
-    
   cancel: (e) ->
     e.preventDefault()
     e.stopPropagation()
@@ -34,7 +37,7 @@ class Tracker.Views.Play extends Tracker.Views.Page
     if(!@resultDiv || !@userInput)
       console.log('error no div and userinput')
       return false
-    
+    @userInput = ""
     @resultDiv.text("")
   
   numberkey: (e) ->
@@ -50,12 +53,29 @@ class Tracker.Views.Play extends Tracker.Views.Page
     
   correction: (e) ->
     @userResult = parseInt(@userInput)
-    console.log(@userResult)
     result = @first*@second
     if(@userResult != result)
-      alert("error")
+      correct = false
     else
-      alert("ok")
+      correct = true
+    json =
+      correct: correct
+    output = Mustache.to_html(@feedback_template,json)
+    if($(".feedback").length)
+      $(".feedback").replaceWith(output)
+    else
+      @$el.append(output)
+
+  close_feedback: () ->
+    @userInput = ""
+    @resultDiv.text("")
+    $(".feedback").fadeOut()
+    
+  reset: () ->
+    @userInput = ""
+    delete @resultDiv
+    @render()
+    @
     
   render: () ->
     @first = Math.floor(Math.random() * 10) + 1

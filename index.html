@@ -123,16 +123,29 @@
           {{#next}}<button class="button next">Opération suivante</button>{{/next}}
         </div>
       </div>
-      
-      <div id="feedback">
+    
+    </script>
+    
+    <script type="text/template" id="tpl-feedback">
+    
+      <div class="feedback">
+        <div class="inner">
         {{#correct}}
-        <p>Cool</p>
+          <p>Cool</p>
+          <div>
+            <button class="button large next">Suivant</button>
+          </div>
         {{/correct}}
         {{^correct}}
-        <p>Nonnnn</p>
+          <p>Nonnnn</p>
+          <div>
+            <button class="button large close">Fermer</button>
+          </div>
         {{/correct}}
+        </div>
+        <div class="overlay"></div>
       </div>
-    
+      
     </script>
 
     <!-- END TEMPLATES -->

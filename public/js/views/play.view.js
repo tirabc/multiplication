@@ -14,17 +14,22 @@
 
     Play.prototype.template = $("#tpl-play").html();
 
+    Play.prototype.feedback_template = $("#tpl-feedback").html();
+
     Play.prototype.events = {
       "click .keyboard>.tile.number": "numberkey",
       "click .keyboard>.tile.delete": "del",
       "click .keyboard>.tile.cancel": "cancel",
-      "click .correction": "correction"
+      "click .correction": "correction",
+      "click .overlay": "close_feedback",
+      "click .close": "close_feedback",
+      "click .next": "reset"
     };
 
     Play.prototype.className = "page";
 
     Play.prototype.initialize = function() {
-      return _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel');
+      return _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel', 'close_feedback', 'reset');
     };
 
     Play.prototype.del = function(e) {
@@ -46,6 +51,7 @@
         console.log('error no div and userinput');
         return false;
       }
+      this.userInput = "";
       return this.resultDiv.text("");
     };
 
@@ -65,15 +71,36 @@
     };
 
     Play.prototype.correction = function(e) {
-      var result;
+      var correct, json, output, result;
       this.userResult = parseInt(this.userInput);
-      console.log(this.userResult);
       result = this.first * this.second;
       if (this.userResult !== result) {
-        return alert("error");
+        correct = false;
       } else {
-        return alert("ok");
+        correct = true;
       }
+      json = {
+        correct: correct
+      };
+      output = Mustache.to_html(this.feedback_template, json);
+      if (($(".feedback").length)) {
+        return $(".feedback").replaceWith(output);
+      } else {
+        return this.$el.append(output);
+      }
+    };
+
+    Play.prototype.close_feedback = function() {
+      this.userInput = "";
+      this.resultDiv.text("");
+      return $(".feedback").fadeOut();
+    };
+
+    Play.prototype.reset = function() {
+      this.userInput = "";
+      delete this.resultDiv;
+      this.render();
+      return this;
     };
 
     Play.prototype.render = function() {
