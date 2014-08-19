@@ -42,12 +42,6 @@
     font-size: 3em;
     font-weight: bolder;
   }
-  &.link{
-    cursor: pointer;
-    &:hover{
-      color: @blue;
-    }
-  }
 }
 
 .topbar{
@@ -135,6 +129,7 @@
 }
 
 .feedback{
+  display: none;
   .overlay{
     position: absolute;
     background: #333;
@@ -156,5 +151,12 @@
     text-align: center;
     z-index: @front;
     .box-shadow(0,0,10px,#000);
+  }
+}
+
+.link{
+  cursor: pointer;
+  &:hover{
+    color: @blue;
   }
 }

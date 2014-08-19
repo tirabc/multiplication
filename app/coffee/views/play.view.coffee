@@ -16,7 +16,7 @@ class Tracker.Views.Play extends Tracker.Views.Page
 
   initialize: () ->
     _.bindAll(@,'render','numberkey','correction','del','cancel','close_feedback','reset')
-    #Tracker.Views.Page.prototype.initialize.call(@)
+    Tracker.Views.Page.prototype.initialize.call(@)
   
   del: (e) ->
     e.preventDefault()
@@ -63,13 +63,14 @@ class Tracker.Views.Play extends Tracker.Views.Page
     output = Mustache.to_html(@feedback_template,json)
     if($(".feedback").length)
       $(".feedback").replaceWith(output)
+      $(".feedback").fadeIn("fast")
     else
-      @$el.append(output)
+      $(output).appendTo(@$el).fadeIn("fast")
 
   close_feedback: () ->
     @userInput = ""
     @resultDiv.text("")
-    $(".feedback").fadeOut()
+    $(".feedback").fadeOut("fast")
     
   reset: () ->
     @userInput = ""

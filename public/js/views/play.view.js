@@ -29,7 +29,8 @@
     Play.prototype.className = "page";
 
     Play.prototype.initialize = function() {
-      return _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel', 'close_feedback', 'reset');
+      _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel', 'close_feedback', 'reset');
+      return Tracker.Views.Page.prototype.initialize.call(this);
     };
 
     Play.prototype.del = function(e) {
@@ -84,16 +85,17 @@
       };
       output = Mustache.to_html(this.feedback_template, json);
       if (($(".feedback").length)) {
-        return $(".feedback").replaceWith(output);
+        $(".feedback").replaceWith(output);
+        return $(".feedback").fadeIn("fast");
       } else {
-        return this.$el.append(output);
+        return $(output).appendTo(this.$el).fadeIn("fast");
       }
     };
 
     Play.prototype.close_feedback = function() {
       this.userInput = "";
       this.resultDiv.text("");
-      return $(".feedback").fadeOut();
+      return $(".feedback").fadeOut("fast");
     };
 
     Play.prototype.reset = function() {

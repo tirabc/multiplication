@@ -3,14 +3,15 @@ class Tracker.Views.App extends Backbone.View
   el: "#main"
   template: $("#tpl-app").html()
   page_el: "#page"
-  events: {}
+  events:
+    "click .link[data-link]": "navigate"
   views: {}
   previous: null
   current: null
   stack_el: "#stack"
 
   initialize: () ->
-    _.bindAll(@,'render','push')
+    _.bindAll(@,'render','push','navigate')
     
   push: (view) ->
     # update the references to last & current views
@@ -35,6 +36,11 @@ class Tracker.Views.App extends Backbone.View
     #if(@previous && @previous.hasOwnProperty("closed"))
     #  @previous.closed.call(@)
 
+  navigate: (e) ->
+    e.preventDefault()
+    next = $(e.currentTarget).data("link")
+    Tracker.Instance.main_router.navigate(next,{trigger:true})
+    
   render: () ->
     @$el.html(@template)
     @

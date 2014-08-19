@@ -16,7 +16,9 @@
 
     App.prototype.page_el = "#page";
 
-    App.prototype.events = {};
+    App.prototype.events = {
+      "click .link[data-link]": "navigate"
+    };
 
     App.prototype.views = {};
 
@@ -27,7 +29,7 @@
     App.prototype.stack_el = "#stack";
 
     App.prototype.initialize = function() {
-      return _.bindAll(this, 'render', 'push');
+      return _.bindAll(this, 'render', 'push', 'navigate');
     };
 
     App.prototype.push = function(view) {
@@ -49,6 +51,15 @@
         })(this), 20);
       }
       return Backbone.trigger(this.current.name + ":page-pushed");
+    };
+
+    App.prototype.navigate = function(e) {
+      var next;
+      e.preventDefault();
+      next = $(e.currentTarget).data("link");
+      return Tracker.Instance.main_router.navigate(next, {
+        trigger: true
+      });
     };
 
     App.prototype.render = function() {

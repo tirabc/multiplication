@@ -56,12 +56,6 @@
   font-size: 3em;
   font-weight: bolder;
 }
-.tile.link {
-  cursor: pointer;
-}
-.tile.link:hover {
-  color: #4a95ef;
-}
 .topbar {
   height: 10%;
   background: #4a95ef;
@@ -173,6 +167,9 @@
   height: 100%;
   width: 100%;
 }
+.feedback {
+  display: none;
+}
 .feedback .overlay {
   position: absolute;
   background: #333;
@@ -196,6 +193,12 @@
   -moz-box-shadow: 0 0 10px #000000;
   -webkit-box-shadow: 0 0 10px #000000;
   box-shadow: 0 0 10px #000000;
+}
+.link {
+  cursor: pointer;
+}
+.link:hover {
+  color: #4a95ef;
 }
 * {
   -moz-box-sizing: border-box;
