@@ -194,6 +194,12 @@
   -webkit-box-shadow: 0 0 10px #000000;
   box-shadow: 0 0 10px #000000;
 }
+.feedback .inner .feedback-button {
+  position: absolute;
+  left: 20%;
+  width: 60%;
+  bottom: 10%;
+}
 .link {
   cursor: pointer;
 }

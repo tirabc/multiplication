@@ -17,18 +17,15 @@ class Tracker.Routers.Main extends Backbone.Router
   home: () ->
     @home = @app.views['home'] || new Tracker.Views.Home()
     @app.push(@home)
-    #@home = new Tracker.Views.Home()
-    #@home_view = @home.render()
-    #@toggle_loader()
     
   tables: () ->
     @tables = @app.views['tables'] || new Tracker.Views.Tables()
     @app.push(@tables)
-    #@history = new Tracker.Views.History()
-    #@history_view = @history.render()
-    #@toggle_loader()
     
   play: () ->
+    if(!Tracker.Instance.user.hasOwnProperty('playing'))
+      Tracker.Instance.main_router.navigate('',{trigger:true})
+      return false
     @play = @app.views['play'] || new Tracker.Views.Play()
     @app.push(@play)
 

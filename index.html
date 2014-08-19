@@ -30,7 +30,10 @@
             <div class="inner"><!--<img src="public/img/menu.png" alt="Menu">--></div>
           </div>
           <div class="grid-item one-third right">
-            <div class="inner"><!--Brand--></div>
+            <div class="inner">
+              <span>Score:</span>
+              <span class="score"></span>
+            </div>
           </div>
         </div>
         <div id="stack" class="grid grid-gutter-none"></div>
@@ -41,7 +44,7 @@
     <script type="text/template" id="tpl-home">
       
       <div class="grid-item two-thirds">
-        <div class="tile link" data-link="play">
+        <div class="tile link play" data-link="play">
           <span class="symbol">Jouer</span>
         </div>
       </div>
@@ -131,14 +134,16 @@
       <div class="feedback">
         <div class="inner">
         {{#correct}}
-          <p>Cool</p>
-          <div>
+          <p class="h2">+1</p>
+          <p class="h3">Bien joué !</p>
+          <div class="feedback-button">
             <button class="button large next">Suivant</button>
           </div>
         {{/correct}}
         {{^correct}}
-          <p>Nonnnn</p>
-          <div>
+          <p class="h2">Dommage !</p>
+          <p class="h3">Essaie encore ...</p>
+          <div class="feedback-button">
             <button class="button large close">Fermer</button>
           </div>
         {{/correct}}

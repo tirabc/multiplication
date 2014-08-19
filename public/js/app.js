@@ -10,6 +10,11 @@
       return Backbone.history.start();
     };
 
+    App.prototype.user = {
+      playing: false,
+      score: 0
+    };
+
     return App;
 
   })();

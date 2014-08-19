@@ -11,7 +11,20 @@ class Tracker.Views.App extends Backbone.View
   stack_el: "#stack"
 
   initialize: () ->
-    _.bindAll(@,'render','push','navigate')
+    Backbone.on('score:up',@increase,@)
+    Backbone.on('score:init',@scoreInit,@)
+    _.bindAll(@,'render','push','navigate','increase','changeScore','scoreInit')
+    
+  scoreInit: () ->
+    @score = 0
+    @changeScore()
+  
+  changeScore: () ->
+    $('.score').text(@score)
+    
+  increase: () ->
+    @score++
+    @changeScore()
     
   push: (view) ->
     # update the references to last & current views

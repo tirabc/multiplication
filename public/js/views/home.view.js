@@ -16,11 +16,17 @@
 
     Home.prototype.template = $("#tpl-home").html();
 
-    Home.prototype.events = {};
+    Home.prototype.events = {
+      "click .play": "play"
+    };
 
     Home.prototype.initialize = function() {
       _.bindAll(this, "render", "navigate");
       return Tracker.Views.Page.prototype.initialize.call(this);
+    };
+
+    Home.prototype.play = function() {
+      return Tracker.Instance.user.playing = true;
     };
 
     Home.prototype.render = function() {

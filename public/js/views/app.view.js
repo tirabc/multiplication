@@ -29,7 +29,23 @@
     App.prototype.stack_el = "#stack";
 
     App.prototype.initialize = function() {
-      return _.bindAll(this, 'render', 'push', 'navigate');
+      Backbone.on('score:up', this.increase, this);
+      Backbone.on('score:init', this.scoreInit, this);
+      return _.bindAll(this, 'render', 'push', 'navigate', 'increase', 'changeScore', 'scoreInit');
+    };
+
+    App.prototype.scoreInit = function() {
+      this.score = 0;
+      return this.changeScore();
+    };
+
+    App.prototype.changeScore = function() {
+      return $('.score').text(this.score);
+    };
+
+    App.prototype.increase = function() {
+      this.score++;
+      return this.changeScore();
     };
 
     App.prototype.push = function(view) {

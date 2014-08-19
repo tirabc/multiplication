@@ -39,6 +39,12 @@
     };
 
     Main.prototype.play = function() {
+      if (!Tracker.Instance.user.hasOwnProperty('playing')) {
+        Tracker.Instance.main_router.navigate('', {
+          trigger: true
+        });
+        return false;
+      }
       this.play = this.app.views['play'] || new Tracker.Views.Play();
       return this.app.push(this.play);
     };

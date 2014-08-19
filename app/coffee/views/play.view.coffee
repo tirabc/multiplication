@@ -15,6 +15,7 @@ class Tracker.Views.Play extends Tracker.Views.Page
 
 
   initialize: () ->
+    Backbone.trigger('score:init')
     _.bindAll(@,'render','numberkey','correction','del','cancel','close_feedback','reset')
     Tracker.Views.Page.prototype.initialize.call(@)
   
@@ -58,6 +59,7 @@ class Tracker.Views.Play extends Tracker.Views.Page
       correct = false
     else
       correct = true
+      Backbone.trigger('score:up')
     json =
       correct: correct
     output = Mustache.to_html(@feedback_template,json)

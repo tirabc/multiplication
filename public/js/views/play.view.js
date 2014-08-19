@@ -29,6 +29,7 @@
     Play.prototype.className = "page";
 
     Play.prototype.initialize = function() {
+      Backbone.trigger('score:init');
       _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel', 'close_feedback', 'reset');
       return Tracker.Views.Page.prototype.initialize.call(this);
     };
@@ -79,6 +80,7 @@
         correct = false;
       } else {
         correct = true;
+        Backbone.trigger('score:up');
       }
       json = {
         correct: correct
