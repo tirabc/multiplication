@@ -20,6 +20,7 @@
   })();
 
   $('document').ready(function() {
+    FastClick.attach(document.body);
     Tracker.Instance = new App;
     return Tracker.Instance.init();
   });

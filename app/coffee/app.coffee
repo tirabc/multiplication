@@ -9,5 +9,7 @@ class App
     score: 0
 
 $('document').ready () ->
+  # fastclick
+  FastClick.attach(document.body)
   Tracker.Instance = new App
   Tracker.Instance.init()
