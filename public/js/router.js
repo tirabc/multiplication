@@ -30,7 +30,8 @@
 
     Main.prototype.home = function() {
       this.home = this.app.views['home'] || new Tracker.Views.Home();
-      return this.app.push(this.home);
+      this.app.push(this.home);
+      return Backbone.trigger('pushed:home');
     };
 
     Main.prototype.tables = function() {
@@ -46,7 +47,8 @@
         return false;
       }
       this.play = this.app.views['play'] || new Tracker.Views.Play();
-      return this.app.push(this.play);
+      this.app.push(this.play);
+      return Backbone.trigger('pushed:play');
     };
 
     Main.prototype.toggle_loader = function() {

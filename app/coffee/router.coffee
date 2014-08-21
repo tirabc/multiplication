@@ -17,6 +17,7 @@ class Tracker.Routers.Main extends Backbone.Router
   home: () ->
     @home = @app.views['home'] || new Tracker.Views.Home()
     @app.push(@home)
+    Backbone.trigger('pushed:home')
     
   tables: () ->
     @tables = @app.views['tables'] || new Tracker.Views.Tables()
@@ -28,6 +29,7 @@ class Tracker.Routers.Main extends Backbone.Router
       return false
     @play = @app.views['play'] || new Tracker.Views.Play()
     @app.push(@play)
+    Backbone.trigger('pushed:play')
 
   toggle_loader: () ->
     $(@loader_el).fadeOut()

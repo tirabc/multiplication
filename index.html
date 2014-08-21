@@ -27,9 +27,7 @@
             <div class="inner"><span class="symbol">Multiplication</span></div>
           </div>
           <div class="grid-item one-third center">
-            <div class="inner">
-              <span>Score:</span>
-              <span class="score"></span>
+            <div class="inner score">
             </div>
           </div>
           <div class="grid-item one-third right">
@@ -147,6 +145,13 @@
         <div class="overlay"></div>
       </div>
       
+    </script>
+    
+    <script type="text/template" id="tpl-score">
+      <div class="inner score">
+        <span>Score:</span>
+        <span>{{score}}</span>
+      </div>
     </script>
 
     <!-- END TEMPLATES -->

@@ -21,8 +21,14 @@
     };
 
     Home.prototype.initialize = function() {
+      Backbone.on("pushed:home", this.reset_view, this);
       _.bindAll(this, "render", "navigate");
       return Tracker.Views.Page.prototype.initialize.call(this);
+    };
+
+    Home.prototype.reset_view = function() {
+      $(".back").hide();
+      return $(".score").hide();
     };
 
     Home.prototype.play = function() {

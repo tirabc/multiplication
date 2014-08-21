@@ -3,6 +3,7 @@ class Tracker.Views.Play extends Tracker.Views.Page
   name: "play"
   template: $("#tpl-play").html()
   feedback_template: $("#tpl-feedback").html()
+  score_template: $("#tpl-score").html()
   events:
     "click .keyboard>.tile.number": "numberkey"
     "click .keyboard>.tile.delete": "del"
@@ -11,11 +12,23 @@ class Tracker.Views.Play extends Tracker.Views.Page
     "click .feedback": "close_feedback"
   className: "page"
 
-
   initialize: () ->
-    Backbone.trigger('score:init')
-    _.bindAll(@,'render','numberkey','correction','del','cancel','close_feedback','reset')
+    @score = 0
+    Backbone.on('pushed:play',@reset_view,@)
+    @change_score(@score)
+    _.bindAll(@,'render','numberkey','correction','del','cancel','close_feedback','reset','reset_view','change_score')
     Tracker.Views.Page.prototype.initialize.call(@)
+  
+  reset_view: () ->
+    $(".back").show()
+    $(".score").show()
+    
+  change_score: (score) ->
+    tpl = @score_template
+    json =
+      score: @score
+    output = Mustache.to_html(tpl,json)
+    $('.score').replaceWith(output)
   
   del: (e) ->
     e.preventDefault()
@@ -57,7 +70,8 @@ class Tracker.Views.Play extends Tracker.Views.Page
       @correct = false
     else
       @correct = true
-      Backbone.trigger('score:up')
+      @score += 1
+      @change_score(@score+1)
     json =
       correct: @correct
     output = Mustache.to_html(@feedback_template,json)

@@ -16,6 +16,8 @@
 
     Play.prototype.feedback_template = $("#tpl-feedback").html();
 
+    Play.prototype.score_template = $("#tpl-score").html();
+
     Play.prototype.events = {
       "click .keyboard>.tile.number": "numberkey",
       "click .keyboard>.tile.delete": "del",
@@ -27,9 +29,26 @@
     Play.prototype.className = "page";
 
     Play.prototype.initialize = function() {
-      Backbone.trigger('score:init');
-      _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel', 'close_feedback', 'reset');
+      this.score = 0;
+      Backbone.on('pushed:play', this.reset_view, this);
+      this.change_score(this.score);
+      _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel', 'close_feedback', 'reset', 'reset_view', 'change_score');
       return Tracker.Views.Page.prototype.initialize.call(this);
+    };
+
+    Play.prototype.reset_view = function() {
+      $(".back").show();
+      return $(".score").show();
+    };
+
+    Play.prototype.change_score = function(score) {
+      var json, output, tpl;
+      tpl = this.score_template;
+      json = {
+        score: this.score
+      };
+      output = Mustache.to_html(tpl, json);
+      return $('.score').replaceWith(output);
     };
 
     Play.prototype.del = function(e) {
@@ -78,7 +97,8 @@
         this.correct = false;
       } else {
         this.correct = true;
-        Backbone.trigger('score:up');
+        this.score += 1;
+        this.change_score(this.score + 1);
       }
       json = {
         correct: this.correct
