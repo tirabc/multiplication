@@ -171,8 +171,9 @@
   display: none;
 }
 .feedback .overlay {
+  opacity: .7;
   position: absolute;
-  background: #333;
+  background: #555;
   width: 100%;
   height: 100%;
   top: 0;
@@ -190,18 +191,13 @@
   font-size: 40px;
   text-align: center;
   z-index: 100;
-  -moz-box-shadow: 0 0 10px #000000;
-  -webkit-box-shadow: 0 0 10px #000000;
-  box-shadow: 0 0 10px #000000;
-}
-.feedback .inner .feedback-button {
-  position: absolute;
-  left: 20%;
-  width: 60%;
-  bottom: 10%;
+  -moz-box-shadow: 0 0 3em #000000;
+  -webkit-box-shadow: 0 0 3em #000000;
+  box-shadow: 0 0 3em #000000;
 }
 .link {
   cursor: pointer;
+  color: #333;
 }
 .link:hover {
   color: #4a95ef;

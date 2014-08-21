@@ -8,9 +8,7 @@ class Tracker.Views.Play extends Tracker.Views.Page
     "click .keyboard>.tile.delete": "del"
     "click .keyboard>.tile.cancel": "cancel"
     "click .correction": "correction"
-    "click .overlay": "close_feedback"
-    "click .close": "close_feedback"
-    "click .next": "reset"
+    "click .feedback": "close_feedback"
   className: "page"
 
 
@@ -56,12 +54,12 @@ class Tracker.Views.Play extends Tracker.Views.Page
     @userResult = parseInt(@userInput)
     result = @first*@second
     if(@userResult != result)
-      correct = false
+      @correct = false
     else
-      correct = true
+      @correct = true
       Backbone.trigger('score:up')
     json =
-      correct: correct
+      correct: @correct
     output = Mustache.to_html(@feedback_template,json)
     if($(".feedback").length)
       $(".feedback").replaceWith(output)
@@ -70,8 +68,12 @@ class Tracker.Views.Play extends Tracker.Views.Page
       $(output).appendTo(@$el).fadeIn("fast")
 
   close_feedback: () ->
+    if(@correct)
+      @reset()
+      @correct = false
+      return false
     @userInput = ""
-    @resultDiv.text("")
+    @resultDiv && @resultDiv.text("")
     $(".feedback").fadeOut("fast")
     
   reset: () ->

@@ -21,9 +21,7 @@
       "click .keyboard>.tile.delete": "del",
       "click .keyboard>.tile.cancel": "cancel",
       "click .correction": "correction",
-      "click .overlay": "close_feedback",
-      "click .close": "close_feedback",
-      "click .next": "reset"
+      "click .feedback": "close_feedback"
     };
 
     Play.prototype.className = "page";
@@ -73,17 +71,17 @@
     };
 
     Play.prototype.correction = function(e) {
-      var correct, json, output, result;
+      var json, output, result;
       this.userResult = parseInt(this.userInput);
       result = this.first * this.second;
       if (this.userResult !== result) {
-        correct = false;
+        this.correct = false;
       } else {
-        correct = true;
+        this.correct = true;
         Backbone.trigger('score:up');
       }
       json = {
-        correct: correct
+        correct: this.correct
       };
       output = Mustache.to_html(this.feedback_template, json);
       if (($(".feedback").length)) {
@@ -95,8 +93,13 @@
     };
 
     Play.prototype.close_feedback = function() {
+      if (this.correct) {
+        this.reset();
+        this.correct = false;
+        return false;
+      }
       this.userInput = "";
-      this.resultDiv.text("");
+      this.resultDiv && this.resultDiv.text("");
       return $(".feedback").fadeOut("fast");
     };
 

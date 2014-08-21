@@ -24,15 +24,17 @@
       <div id="wrapper">
         <div id="topbar" class="topbar grid grid-gutter-half">
           <div class="grid-item one-third left">
-            <div class="inner link" data-link="home"><span class="symbol">Multiplication</span></div>
+            <div class="inner"><span class="symbol">Multiplication</span></div>
           </div>
           <div class="grid-item one-third center">
-            <div class="inner"><!--<img src="public/img/menu.png" alt="Menu">--></div>
-          </div>
-          <div class="grid-item one-third right">
             <div class="inner">
               <span>Score:</span>
               <span class="score"></span>
+            </div>
+          </div>
+          <div class="grid-item one-third right">
+            <div class="inner">
+              <a href="#home" class="button back">Retour</a>
             </div>
           </div>
         </div>
@@ -122,8 +124,8 @@
 
       <div class="action grid grid-gutter-none">
         <div class="grid-item one-whole">
-          {{^next}}<button class="button correction">Corriger</button>{{/next}}
-          {{#next}}<button class="button next">Opération suivante</button>{{/next}}
+          {{^next}}<button class="button correction h2">Corriger</button>{{/next}}
+          {{#next}}<button class="button next h2">Opération suivante</button>{{/next}}
         </div>
       </div>
     
@@ -136,16 +138,10 @@
         {{#correct}}
           <p class="h2">+1</p>
           <p class="h3">Bien joué !</p>
-          <div class="feedback-button">
-            <button class="button large next">Suivant</button>
-          </div>
         {{/correct}}
         {{^correct}}
           <p class="h2">Dommage !</p>
           <p class="h3">Essaie encore ...</p>
-          <div class="feedback-button">
-            <button class="button large close">Fermer</button>
-          </div>
         {{/correct}}
         </div>
         <div class="overlay"></div>
