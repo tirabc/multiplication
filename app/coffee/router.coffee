@@ -4,6 +4,7 @@ class Tracker.Routers.Main extends Backbone.Router
     "home": "home"
     "tables": "tables"
     "play": "play"
+    "parameters": "parameters"
     "*page": "home"
   main_el: "#main"
   loader_el: "#loader"
@@ -22,6 +23,7 @@ class Tracker.Routers.Main extends Backbone.Router
   tables: () ->
     @tables = @app.views['tables'] || new Tracker.Views.Tables()
     @app.push(@tables)
+    Backbone.trigger('pushed:tables')
     
   play: () ->
     if(!Tracker.Instance.user.hasOwnProperty('playing'))
@@ -30,6 +32,11 @@ class Tracker.Routers.Main extends Backbone.Router
     @play = @app.views['play'] || new Tracker.Views.Play()
     @app.push(@play)
     Backbone.trigger('pushed:play')
+    
+  parameters: () ->
+    @parameters = @app.views['parameters'] || new Tracker.Views.Parameters()
+    @app.push(@parameters)
+    Backbone.trigger('pushed:parameters')
 
   toggle_loader: () ->
     $(@loader_el).fadeOut()

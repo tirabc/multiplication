@@ -14,6 +14,7 @@
       "home": "home",
       "tables": "tables",
       "play": "play",
+      "parameters": "parameters",
       "*page": "home"
     };
 
@@ -36,7 +37,8 @@
 
     Main.prototype.tables = function() {
       this.tables = this.app.views['tables'] || new Tracker.Views.Tables();
-      return this.app.push(this.tables);
+      this.app.push(this.tables);
+      return Backbone.trigger('pushed:tables');
     };
 
     Main.prototype.play = function() {
@@ -49,6 +51,12 @@
       this.play = this.app.views['play'] || new Tracker.Views.Play();
       this.app.push(this.play);
       return Backbone.trigger('pushed:play');
+    };
+
+    Main.prototype.parameters = function() {
+      this.parameters = this.app.views['parameters'] || new Tracker.Views.Parameters();
+      this.app.push(this.parameters);
+      return Backbone.trigger('pushed:parameters');
     };
 
     Main.prototype.toggle_loader = function() {

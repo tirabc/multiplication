@@ -55,6 +55,12 @@
         </div>
       </div>
 
+      <div class="grid-item one-whole">
+        <div class="tile link" data-link="parameters">
+          <span class="symbol">Paramètres</span>
+        </div>
+      </div>
+
     </script>
 
     <script type="text/template" id="tpl-tables">
@@ -153,6 +159,26 @@
         <span>{{score}}</span>
       </div>
     </script>
+    
+    <script type="text/parameters" id="tpl-parameters">
+      <h1>Parameters</h1>
+      <form class="parameters-form grid grid-gutter-none">
+      <fieldset class="grid-item">
+        <div>
+          <label>Bottom limit</label>
+          <input id="min" type="text" placeholder="minimum">
+        </div>
+        <div>
+          <label>Top limit</label>
+          <input id="max" type="text" placeholder="maximum">
+        </div>
+        <div>
+          <button class="button button-block one-whole">Enregistrer</button>
+        </div>
+      </fieldset>
+      </form>
+        
+    </script>
 
     <!-- END TEMPLATES -->
 
@@ -190,6 +216,7 @@
     <script src="public/js/views/home.view.js"></script>
     <script src="public/js/views/play.view.js"></script>
     <script src="public/js/views/tables.view.js"></script>
+    <script src="public/js/views/parameters.view.js"></script>
 
     <!-- END VIEWS -->
 

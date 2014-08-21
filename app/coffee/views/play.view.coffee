@@ -14,10 +14,19 @@ class Tracker.Views.Play extends Tracker.Views.Page
 
   initialize: () ->
     @score = 0
-    Backbone.on('pushed:play',@reset_view,@)
+    @min = 1
+    @max = 2
+    @limit = 10
     @change_score(@score)
-    _.bindAll(@,'render','numberkey','correction','del','cancel','close_feedback','reset','reset_view','change_score')
+    Backbone.on('pushed:play',@reset_view,@)
+    Backbone.on('preferences:change',@reset_preferences,@)
+    _.bindAll(@,'render','numberkey','correction','del','cancel','close_feedback','reset','reset_view','change_score','reset_preferences','get_random')
     Tracker.Views.Page.prototype.initialize.call(@)
+  
+  reset_preferences: (data) ->
+    @min = data.min
+    @max = data.max
+    @render()
   
   reset_view: () ->
     $(".back").show()
@@ -96,13 +105,16 @@ class Tracker.Views.Play extends Tracker.Views.Page
     @render()
     @
     
+  get_random: () ->
+    temp = Math.random()*(@max-@min+1)
+    return parseInt(Math.floor(temp))+parseInt(@min)
+    
   render: () ->
-    @first = Math.floor(Math.random() * 10) + 1
-    @second = Math.floor(Math.random() * 10) + 1
+    @first = parseInt(@get_random())
+    @second = Math.floor(Math.random() * @limit) + 1
     json =
       "first": @first
       "second": @second
-      "next": false
     output = Mustache.to_html(@template,json)
     @$el.html(output)
     @

@@ -30,10 +30,20 @@
 
     Play.prototype.initialize = function() {
       this.score = 0;
-      Backbone.on('pushed:play', this.reset_view, this);
+      this.min = 1;
+      this.max = 2;
+      this.limit = 10;
       this.change_score(this.score);
-      _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel', 'close_feedback', 'reset', 'reset_view', 'change_score');
+      Backbone.on('pushed:play', this.reset_view, this);
+      Backbone.on('preferences:change', this.reset_preferences, this);
+      _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel', 'close_feedback', 'reset', 'reset_view', 'change_score', 'reset_preferences', 'get_random');
       return Tracker.Views.Page.prototype.initialize.call(this);
+    };
+
+    Play.prototype.reset_preferences = function(data) {
+      this.min = data.min;
+      this.max = data.max;
+      return this.render();
     };
 
     Play.prototype.reset_view = function() {
@@ -130,14 +140,19 @@
       return this;
     };
 
+    Play.prototype.get_random = function() {
+      var temp;
+      temp = Math.random() * (this.max - this.min + 1);
+      return parseInt(Math.floor(temp)) + parseInt(this.min);
+    };
+
     Play.prototype.render = function() {
       var json, output;
-      this.first = Math.floor(Math.random() * 10) + 1;
-      this.second = Math.floor(Math.random() * 10) + 1;
+      this.first = parseInt(this.get_random());
+      this.second = Math.floor(Math.random() * this.limit) + 1;
       json = {
         "first": this.first,
-        "second": this.second,
-        "next": false
+        "second": this.second
       };
       output = Mustache.to_html(this.template, json);
       this.$el.html(output);
