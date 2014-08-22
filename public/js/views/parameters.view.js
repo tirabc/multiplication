@@ -39,8 +39,8 @@
     Parameters.prototype.set_limits = function() {
       this.min = $("#slider").val()[0];
       this.max = $("#slider").val()[1];
-      $("#min-feedback").text(Math.floor(this.min));
-      $("#max-feedback").text(Math.floor(this.max));
+      $("#min-feedback").text(Math.round(this.min));
+      $("#max-feedback").text(Math.round(this.max));
       return Backbone.trigger('preferences:change', {
         min: this.min,
         max: this.max

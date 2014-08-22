@@ -21,21 +21,21 @@ class Tracker.Views.App extends Backbone.View
     if @previous
       @previous.$el.removeClass("is-visible")
     
-    ###if(@views.hasOwnProperty(@current.name))
+    if(@views.hasOwnProperty(@current.name))
       @views[@current.name].$el.toggleClass("is-visible")
       @views[@current.name].$el.on('transitionend',(e)=>
-        @previous.$el.remove()
+        #@previous.$el.remove()
       )
-    else###
-    @current.render()
-    @views[view.name] = view
-    $(@stack_el).append(@current.$el)
-    _.delay(()=> #hack to trigger css effect after html injection
-      @current.$el.toggleClass("is-visible")
-      @current.$el.on('transitionend',()=>
-        @previous.$el.remove()
-      )
-    ,20)
+    else
+      @current.render()
+      @views[view.name] = view
+      $(@stack_el).append(@current.$el)
+      _.delay(()=> #hack to trigger css effect after html injection
+        @current.$el.toggleClass("is-visible")
+        @current.$el.on('transitionend',()=>
+          #@previous.$el.remove()
+        )
+      ,20)
     
     # log & fire pushed event
     Backbone.trigger(@current.name + ":page-pushed")

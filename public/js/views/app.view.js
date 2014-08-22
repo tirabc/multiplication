@@ -38,25 +38,22 @@
       if (this.previous) {
         this.previous.$el.removeClass("is-visible");
       }
-
-      /*if(@views.hasOwnProperty(@current.name))
-        @views[@current.name].$el.toggleClass("is-visible")
-        @views[@current.name].$el.on('transitionend',(e)=>
-          @previous.$el.remove()
-        )
-      else
-       */
-      this.current.render();
-      this.views[view.name] = view;
-      $(this.stack_el).append(this.current.$el);
-      _.delay((function(_this) {
-        return function() {
-          _this.current.$el.toggleClass("is-visible");
-          return _this.current.$el.on('transitionend', function() {
-            return _this.previous.$el.remove();
-          });
-        };
-      })(this), 20);
+      if (this.views.hasOwnProperty(this.current.name)) {
+        this.views[this.current.name].$el.toggleClass("is-visible");
+        this.views[this.current.name].$el.on('transitionend', (function(_this) {
+          return function(e) {};
+        })(this));
+      } else {
+        this.current.render();
+        this.views[view.name] = view;
+        $(this.stack_el).append(this.current.$el);
+        _.delay((function(_this) {
+          return function() {
+            _this.current.$el.toggleClass("is-visible");
+            return _this.current.$el.on('transitionend', function() {});
+          };
+        })(this), 20);
+      }
       return Backbone.trigger(this.current.name + ":page-pushed");
     };
 

@@ -25,8 +25,8 @@ class Tracker.Views.Parameters extends Tracker.Views.Page
   set_limits: () ->
     @min = $("#slider").val()[0]
     @max = $("#slider").val()[1]
-    $("#min-feedback").text(Math.floor(@min))
-    $("#max-feedback").text(Math.floor(@max))
+    $("#min-feedback").text(Math.round(@min))
+    $("#max-feedback").text(Math.round(@max))
     Backbone.trigger('preferences:change',{min: @min,max: @max})
     #Tracker.Instance.main_router.navigate("home",trigger: true)
   
