@@ -75,10 +75,15 @@
 .inner {
   padding: 1em;
 }
+#stack {
+  overflow-x: hidden;
+  position: absolute;
+  height: 90%;
+  width: 100%;
+}
 .page {
   background: beige;
   position: absolute;
-  top: 10%;
   right: 0;
   bottom: 0;
   left: 0;
