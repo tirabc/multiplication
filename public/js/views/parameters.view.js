@@ -17,34 +17,45 @@
     Parameters.prototype.className = "page";
 
     Parameters.prototype.events = {
-      "click .parameters-form button": "save"
+      "slide #slider": "set_limits"
     };
 
     Parameters.prototype.initialize = function() {
       Backbone.on('pushed:parameters', this.reset_view, this);
-      _.bindAll(this, 'render');
+      _.bindAll(this, 'render', 'reset_view', 'start_animation', 'set_limits');
       return Tracker.Views.Page.prototype.initialize.call(this);
     };
 
-    Parameters.prototype.save = function() {
-      this.min = $("#min").val();
-      this.max = $("#max").val();
-      Backbone.trigger('preferences:change', {
-        min: this.min,
-        max: this.max
-      });
-      return Tracker.Instance.main_router.navigate("home", {
-        trigger: true
-      });
-    };
-
     Parameters.prototype.reset_view = function() {
-      return $(".back").show();
+      $(".back").show();
+      return this.start_animation();
     };
 
     Parameters.prototype.render = function() {
       this.$el.html(this.template);
       return this;
+    };
+
+    Parameters.prototype.set_limits = function() {
+      this.min = $("#slider").val()[0];
+      this.max = $("#slider").val()[1];
+      $("#min-feedback").text(Math.floor(this.min));
+      $("#max-feedback").text(Math.floor(this.max));
+      return Backbone.trigger('preferences:change', {
+        min: this.min,
+        max: this.max
+      });
+    };
+
+    Parameters.prototype.start_animation = function() {
+      return $('#slider').noUiSlider({
+        start: [4, 8],
+        connect: true,
+        range: {
+          'min': [0],
+          'max': [10]
+        }
+      });
     };
 
     return Parameters;

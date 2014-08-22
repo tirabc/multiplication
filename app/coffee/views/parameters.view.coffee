@@ -4,21 +4,16 @@ class Tracker.Views.Parameters extends Tracker.Views.Page
   template: $("#tpl-parameters").html()
   className: "page"
   events:
-    "click .parameters-form button": "save"
+    "slide #slider": "set_limits"
 
   initialize: () ->
     Backbone.on('pushed:parameters',@reset_view,@)
-    _.bindAll(@,'render')
+    _.bindAll(@,'render','reset_view','start_animation','set_limits')
     Tracker.Views.Page.prototype.initialize.call(@)
 	
-  save: () ->
-    @min = $("#min").val()
-    @max = $("#max").val()
-    Backbone.trigger('preferences:change',{min: @min,max: @max})
-    Tracker.Instance.main_router.navigate("home",trigger: true)
-    
   reset_view: () ->
     $(".back").show()
+    @start_animation()
     
   render: () ->
     #partials =
@@ -26,3 +21,20 @@ class Tracker.Views.Parameters extends Tracker.Views.Page
     #output = Mustache.to_html(@template,@website.toJSON())#,partials)
     @$el.html(@template)
     @
+  
+  set_limits: () ->
+    @min = $("#slider").val()[0]
+    @max = $("#slider").val()[1]
+    $("#min-feedback").text(Math.floor(@min))
+    $("#max-feedback").text(Math.floor(@max))
+    Backbone.trigger('preferences:change',{min: @min,max: @max})
+    #Tracker.Instance.main_router.navigate("home",trigger: true)
+  
+  start_animation: () ->
+    $('#slider').noUiSlider(
+      start: [ 4, 8 ]
+      connect: true
+      range:
+        'min': [0]
+        'max': [10]
+    )

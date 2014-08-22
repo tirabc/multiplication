@@ -4,6 +4,7 @@
     <title>Multiplication</title>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="public/css/jquery.nouislider.css" type="text/css"/>
     <link rel="stylesheet" href="public/css/main.css" type="text/css"/>
     <link rel="stylesheet" href="public/css/style.css" type="text/css"/>
   </head>
@@ -51,7 +52,7 @@
 
       <div class="grid-item one-third">
         <div class="tile link" data-link="tables">
-          <span class="symbol">Revoir</span>
+          <span class="symbol">Tables</span>
         </div>
       </div>
 
@@ -161,22 +162,17 @@
     </script>
     
     <script type="text/parameters" id="tpl-parameters">
-      <h1>Parameters</h1>
-      <form class="parameters-form grid grid-gutter-none">
-      <fieldset class="grid-item">
-        <div>
-          <label>Bottom limit</label>
-          <input id="min" type="text" placeholder="minimum">
+      <div class="grid grid-gutter-none">
+        <div class="island">
+          <div class="grid-item one-fourth"><span>De </span></div>
+          <div class="grid-item one-fourth"><span id="min-feedback" class="well h4"></span></div>
+          <div class="grid-item one-fourth"><span> jusqu'à </span></div>
+          <div class="grid-item one-fourth"><span id="max-feedback" class="well h4"></span></div>
         </div>
-        <div>
-          <label>Top limit</label>
-          <input id="max" type="text" placeholder="maximum">
+        <div class="grid-item one-whole">
+          <div id="slider"></div>
         </div>
-        <div>
-          <button class="button button-block one-whole">Enregistrer</button>
-        </div>
-      </fieldset>
-      </form>
+      </div>
         
     </script>
 
@@ -194,6 +190,7 @@
     <script src="libs/raphael-min.js"></script>
     <script src="libs/morris.min.js"></script>
     <script src="libs/fastclick.js"></script>
+    <script src="libs/jquery.nouislider.min.js"></script>
 
     <!-- END LIBS -->
 
