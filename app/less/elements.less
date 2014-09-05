@@ -85,13 +85,13 @@
   height: 100%;
   z-index: @front;
   .transition(transform,0.5s,ease); 
-  transform: translate3d(100%, 0, 0);
-  transform: -webkit-translate3d(100%, 0, 0);
-  //display: none;
+  //transform: translate3d(100%, 0, 0);
+  //transform: -webkit-translate3d(100%, 0, 0);
+  display: none;
   &.is-visible{
-    transform: translate3d(0, 0, 0);
-    transform: -webkit-translate3d(0, 0, 0);
-    //display: block;
+    //transform: translate3d(0, 0, 0);
+    //transform: -webkit-translate3d(0, 0, 0);
+    display: block;
   }
 }
 
