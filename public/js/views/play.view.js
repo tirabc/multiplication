@@ -18,17 +18,22 @@
 
     Play.prototype.score_template = $("#tpl-score").html();
 
+    Play.prototype.gamify_template = $("#tpl-gamify").html();
+
     Play.prototype.events = {
       "click .keyboard>.tile.number": "numberkey",
       "click .keyboard>.tile.delete": "del",
       "click .keyboard>.tile.cancel": "cancel",
       "click .correction": "correction",
-      "click .feedback": "close_feedback"
+      "click .feedback": "close_feedback",
+      "click .gamify button": "close_gamify"
     };
 
     Play.prototype.className = "page";
 
     Play.prototype.initialize = function() {
+      this.level_image_url = "public/data/level_";
+      this.level = null;
       this.score = 0;
       this.min = 1;
       this.max = 2;
@@ -36,7 +41,7 @@
       this.change_score(this.score);
       Backbone.on('pushed:play', this.reset_view, this);
       Backbone.on('preferences:change', this.reset_preferences, this);
-      _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel', 'close_feedback', 'reset', 'reset_view', 'change_score', 'reset_preferences', 'get_random');
+      _.bindAll(this, 'render', 'numberkey', 'correction', 'del', 'cancel', 'close_feedback', 'reset', 'reset_view', 'change_score', 'reset_preferences', 'get_random', 'start_animation', 'gamify', 'close_gamify');
       return Tracker.Views.Page.prototype.initialize.call(this);
     };
 
@@ -84,6 +89,26 @@
       return this.resultDiv.text("");
     };
 
+    Play.prototype.gamify = function() {
+      var image, json, output;
+      image = this.level_image_url + this.score + ".jpg";
+      json = {
+        score: this.score,
+        image: image
+      };
+      output = Mustache.to_html(this.gamify_template, json);
+      if (($(".gamify").length)) {
+        $(".gamify").replaceWith(output);
+        return $(".gamify").fadeIn("fast");
+      } else {
+        return $(output).appendTo(this.$el).fadeIn("fast");
+      }
+    };
+
+    Play.prototype.close_gamify = function() {
+      return $(".gamify").fadeOut("fast");
+    };
+
     Play.prototype.numberkey = function(e) {
       var number;
       if (!this.resultDiv) {
@@ -108,7 +133,7 @@
       } else {
         this.correct = true;
         this.score += 1;
-        this.change_score(this.score + 1);
+        this.change_score(this.score);
       }
       json = {
         correct: this.correct
@@ -116,9 +141,12 @@
       output = Mustache.to_html(this.feedback_template, json);
       if (($(".feedback").length)) {
         $(".feedback").replaceWith(output);
-        return $(".feedback").fadeIn("fast");
+        $(".feedback").fadeIn("fast");
       } else {
-        return $(output).appendTo(this.$el).fadeIn("fast");
+        $(output).appendTo(this.$el).fadeIn("fast");
+      }
+      if (this.score && this.score % 5 === 0) {
+        return this.gamify();
       }
     };
 
@@ -144,6 +172,20 @@
       var temp;
       temp = Math.random() * (this.max - this.min + 1);
       return parseInt(Math.floor(temp)) + parseInt(this.min);
+    };
+
+    Play.prototype.start_animation = function() {
+      $("#runner").runner({
+        startAt: 5000,
+        stopAt: 0,
+        countdown: true,
+        milliseconds: false
+      }).on('runnerFinish', (function(_this) {
+        return function(e) {
+          return _this.reset();
+        };
+      })(this));
+      return $("#runner").runner('start');
     };
 
     Play.prototype.render = function() {

@@ -85,7 +85,8 @@
         <span class="grid-item one-sixth symbol">x</span>
         <span class="grid-item one-sixth symbol">{{second}}</span>
         <span class="grid-item one-sixth symbol">=</span>
-        <span class="grid-item one-third symbol result">&nbsp;</span>
+        <span class="grid-item one-sixth symbol result">&nbsp;</span>
+        <span class="grid-item one-sixth symbol" id="runner"></span>
       </div>
       
       <div class="keyboard grid grid-gutter-none">
@@ -161,7 +162,7 @@
       </div>
     </script>
     
-    <script type="text/parameters" id="tpl-parameters">
+    <script type="text/template" id="tpl-parameters">
       <div class="grid grid-gutter-none">
         <div class="island">
           <div class="option-label">
@@ -176,6 +177,19 @@
         </div>
       </div>
         
+    </script>
+    
+    <script type="text/template" id="tpl-gamify">
+    
+      <div class="gamify">
+        <div class="inner" style="background:#FFF url({{image}}) no-repeat">
+          <p class="h2">{{score}}</p>
+          <p class="h3">Bien joué !</p>
+          <button class="button button-large">Continuer</button>
+        </div>
+        <div class="overlay"></div>
+      </div>
+      
     </script>
 
     <!-- END TEMPLATES -->
@@ -193,6 +207,7 @@
     <script src="libs/morris.min.js"></script>
     <script src="libs/fastclick.js"></script>
     <script src="libs/jquery.nouislider.min.js"></script>
+    <script src="libs/jquery.runner-min.js"></script>
 
     <!-- END LIBS -->
 

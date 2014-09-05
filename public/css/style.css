@@ -176,10 +176,18 @@
   height: 100%;
   width: 100%;
 }
-.feedback {
+.gamify .overlay {
   display: none;
 }
-.feedback .overlay {
+.gamify .inner {
+  z-index: 1000;
+}
+.feedback,
+.gamify {
+  display: none;
+}
+.feedback .overlay,
+.gamify .overlay {
   opacity: .7;
   position: absolute;
   background: #555;
@@ -189,7 +197,8 @@
   left: 0;
   z-index: 50;
 }
-.feedback .inner {
+.feedback .inner,
+.gamify .inner {
   position: absolute;
   top: 10%;
   left: 10%;
