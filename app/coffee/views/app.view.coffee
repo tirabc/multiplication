@@ -14,6 +14,10 @@ class Tracker.Views.App extends Backbone.View
     _.bindAll(@,'render','push','navigate')
     
   push: (view) ->
+    
+    #current = view.render()
+    #$(@stack_el).html(current.$el)
+
     # update the references to last & current views
     @previous = @current
     @current = view
@@ -23,25 +27,25 @@ class Tracker.Views.App extends Backbone.View
     
     if(@views.hasOwnProperty(@current.name))
       @views[@current.name].$el.toggleClass("is-visible")
-      @views[@current.name].$el.on('transitionend',(e)=>
+      #@views[@current.name].$el.on('transitionend',(e)=>
         #@previous.$el.remove()
-      )
+      #)
     else
       @current.render()
       @views[view.name] = view
       $(@stack_el).append(@current.$el)
       _.delay(()=> #hack to trigger css effect after html injection
         @current.$el.toggleClass("is-visible")
-        @current.$el.on('transitionend',()=>
+        #@current.$el.on('transitionend',()=>
           #@previous.$el.remove()
-        )
+        #)
       ,20)
     
     # log & fire pushed event
     Backbone.trigger(@current.name + ":page-pushed")
     #if(@previous && @previous.hasOwnProperty("closed"))
     #  @previous.closed.call(@)
-
+    
   navigate: (e) ->
     e.preventDefault()
     next = $(e.currentTarget).data("link")

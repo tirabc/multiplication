@@ -40,17 +40,13 @@
       }
       if (this.views.hasOwnProperty(this.current.name)) {
         this.views[this.current.name].$el.toggleClass("is-visible");
-        this.views[this.current.name].$el.on('transitionend', (function(_this) {
-          return function(e) {};
-        })(this));
       } else {
         this.current.render();
         this.views[view.name] = view;
         $(this.stack_el).append(this.current.$el);
         _.delay((function(_this) {
           return function() {
-            _this.current.$el.toggleClass("is-visible");
-            return _this.current.$el.on('transitionend', function() {});
+            return _this.current.$el.toggleClass("is-visible");
           };
         })(this), 20);
       }

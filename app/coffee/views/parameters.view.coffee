@@ -31,10 +31,14 @@ class Tracker.Views.Parameters extends Tracker.Views.Page
     #Tracker.Instance.main_router.navigate("home",trigger: true)
   
   start_animation: () ->
-    $('#slider').noUiSlider(
-      start: [ 4, 8 ]
-      connect: true
-      range:
-        'min': [0]
-        'max': [10]
-    )
+
+    if(!$('#slider').val())
+      $('#slider').noUiSlider(
+        start: [ 4, 8 ]
+        connect: true
+        range:
+          'min': [0]
+          'max': [10]
+      ).val([0,10])
+      @set_limits()
+    

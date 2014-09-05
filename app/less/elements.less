@@ -84,9 +84,11 @@
   height: 90%;
   z-index: @front;
   .transition(transform,0.5s,ease); 
-  transform: translate3d(100%, 0, 0);
+  //transform: translate3d(100%, 0, 0);
+  display: none;
   &.is-visible{
-    transform: translate3d(0, 0, 0);
+    //transform: translate3d(0, 0, 0);
+    display: block;
   }
 }
 

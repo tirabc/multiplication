@@ -48,14 +48,17 @@
     };
 
     Parameters.prototype.start_animation = function() {
-      return $('#slider').noUiSlider({
-        start: [4, 8],
-        connect: true,
-        range: {
-          'min': [0],
-          'max': [10]
-        }
-      });
+      if (!$('#slider').val()) {
+        $('#slider').noUiSlider({
+          start: [4, 8],
+          connect: true,
+          range: {
+            'min': [0],
+            'max': [10]
+          }
+        }).val([0, 10]);
+        return this.set_limits();
+      }
     };
 
     return Parameters;
