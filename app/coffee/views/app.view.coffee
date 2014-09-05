@@ -15,6 +15,7 @@ class Tracker.Views.App extends Backbone.View
     
   push: (view) ->
     
+    # debug transitions (simple replace)
     #current = view.render()
     #$(@stack_el).html(current.$el)
 
@@ -24,20 +25,23 @@ class Tracker.Views.App extends Backbone.View
     
     if @previous
       @previous.$el.removeClass("is-visible")
+      @previous.$el.hide()
     
     if(@views.hasOwnProperty(@current.name))
       @views[@current.name].$el.toggleClass("is-visible")
-      #@views[@current.name].$el.on('transitionend',(e)=>
+      @views[@current.name].$el.on('transitionend',(e)=>
+        @previous.$el.hide()
         #@previous.$el.remove()
-      #)
+      )
     else
       @current.render()
       @views[view.name] = view
       $(@stack_el).append(@current.$el)
       _.delay(()=> #hack to trigger css effect after html injection
         @current.$el.toggleClass("is-visible")
-        #@current.$el.on('transitionend',()=>
-          #@previous.$el.remove()
+        @current.$el.on('transitionend',()=>
+          @previous.$el.hide()
+          @previous.$el.remove()
         #)
       ,20)
     
