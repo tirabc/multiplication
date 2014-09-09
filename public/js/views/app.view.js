@@ -36,17 +36,26 @@
       this.previous = this.current;
       this.current = view;
       if (this.previous) {
-        this.previous.$el.removeClass("is-visible");
+        this.previous.$el.addClass("left").removeClass("center");
       }
       if (this.views.hasOwnProperty(this.current.name)) {
-        this.views[this.current.name].$el.toggleClass("is-visible");
+        this.views[this.current.name].$el.addClass("center").removeClass("right");
+        this.views[this.current.name].$el.one('transitionend', (function(_this) {
+          return function(e) {
+            return _this.previous.$el.addClass("right").removeClass("left");
+          };
+        })(this));
       } else {
         this.current.render();
         this.views[view.name] = view;
+        this.current.$el.addClass("right");
         $(this.stack_el).append(this.current.$el);
         _.delay((function(_this) {
           return function() {
-            return _this.current.$el.toggleClass("is-visible");
+            _this.current.$el.addClass("center").removeClass("right");
+            return _this.current.$el.one('transitionend', function(e) {
+              return _this.previous.$el.addClass("right").removeClass("left");
+            });
           };
         })(this), 20);
       }

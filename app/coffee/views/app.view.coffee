@@ -24,25 +24,31 @@ class Tracker.Views.App extends Backbone.View
     @current = view
     
     if @previous
-      @previous.$el.removeClass("is-visible")
-      @previous.$el.hide()
+      #@previous.$el.removeClass("is-visible")
+      @previous.$el.addClass("left").removeClass("center")
+      #@previous.$el.hide()
     
     if(@views.hasOwnProperty(@current.name))
-      @views[@current.name].$el.toggleClass("is-visible")
-      @views[@current.name].$el.on('transitionend',(e)=>
-        @previous.$el.hide()
+      #@views[@current.name].$el.toggleClass("is-visible")
+      @views[@current.name].$el.addClass("center").removeClass("right")
+      @views[@current.name].$el.one('transitionend',(e)=>
+        #@previous.$el.hide()
         #@previous.$el.remove()
+        @previous.$el.addClass("right").removeClass("left")
       )
     else
       @current.render()
       @views[view.name] = view
+      @current.$el.addClass("right")
       $(@stack_el).append(@current.$el)
       _.delay(()=> #hack to trigger css effect after html injection
-        @current.$el.toggleClass("is-visible")
-        @current.$el.on('transitionend',()=>
-          @previous.$el.hide()
-          @previous.$el.remove()
-        #)
+        #@current.$el.toggleClass("is-visible")
+        @current.$el.addClass("center").removeClass("right")
+        @current.$el.one('transitionend',(e)=>
+            #@previous.$el.hide()
+            #@previous.$el.remove()
+          @previous.$el.addClass("right").removeClass("left")
+        )
       ,20)
     
     # log & fire pushed event

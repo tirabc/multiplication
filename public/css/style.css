@@ -18,9 +18,6 @@
   height: 20%;
   margin: 40% auto;
 }
-.page {
-  z-index: 100;
-}
 .panel {
   padding: 1em;
   background: #333333;
@@ -88,18 +85,27 @@
   right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
   z-index: 100;
-  -webkit-transition: transform 0.5s ease;
-  -moz-transition: transform 0.5s ease;
-  -ms-transition: transform 0.5s ease;
-  -o-transition: transform 0.5s ease;
-  transition: transform 0.5s ease;
-  display: none;
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -ms-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease;
 }
-.page.is-visible {
-  display: block;
+.page.left {
+  z-index: 0;
+  transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate3d(-100%, 0, 0);
+}
+.page.right {
+  transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate3d(100%, 0, 0);
+  z-index: 0;
+}
+.page.center {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  z-index: 100;
 }
 .operation {
   height: 30%;
