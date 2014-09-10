@@ -90,7 +90,7 @@
     };
 
     Play.prototype.gamify = function() {
-      var image, json, output;
+      var image, json, output, picture_height, texts_height, total_height;
       image = this.level_image_url + this.score + ".jpg";
       json = {
         score: this.score,
@@ -99,13 +99,20 @@
       output = Mustache.to_html(this.gamify_template, json);
       if (($(".gamify").length)) {
         $(".gamify").replaceWith(output);
-        return $(".gamify").fadeIn("fast");
+        $(".gamify").fadeIn("fast");
       } else {
-        return $(output).appendTo(this.$el).fadeIn("fast");
+        $(output).appendTo(this.$el).fadeIn("fast");
       }
+      texts_height = $(".gamify .texts").height();
+      total_height = $(".gamify .inner").height();
+      picture_height = total_height - texts_height;
+      console.log(picture_height);
+      return $(".gamify .picture").css("height", parseInt(picture_height));
     };
 
-    Play.prototype.close_gamify = function() {
+    Play.prototype.close_gamify = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       return $(".gamify").fadeOut("fast");
     };
 
@@ -150,7 +157,9 @@
       }
     };
 
-    Play.prototype.close_feedback = function() {
+    Play.prototype.close_feedback = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       if (this.correct) {
         this.reset();
         this.correct = false;

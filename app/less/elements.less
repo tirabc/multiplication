@@ -78,17 +78,7 @@
   bottom: 0;
   left: 0;
   z-index: @front;
-  .transition(all,0.25s,ease); 
-  //-webkit-transition: all 1s ease;
-  //transition: all 1s ease;
-  //-webkit-transform: translate3d(-100%, 0, 0);
-  //transform: translate3d(-100%, 0, 0);
-  //display: none;
-  //&.is-visible{
-    //-webkit-transform: translate3d(0, 0, 0);
-    //transform: translate3d(0, 0, 0);
-    //display: block;
-  //}
+  .transition(all,.2s,ease); 
   
   &.left{      
     z-index: 0;
@@ -171,7 +161,7 @@
   .overlay{
     opacity: .7;
     position: absolute;
-    background: #555;
+    background: #000;
     width: 100%;
     height: 100%;
     top: 0;
@@ -203,4 +193,13 @@
 
 .option-label,.option-wrapper{
   padding: 1rem;
+}
+
+.responsive-picture{
+  //width: 100%;
+  max-height: 100%;
+}
+
+#panel-tables{
+  height: 100%;
 }

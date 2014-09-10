@@ -14,18 +14,45 @@
 
     Tables.prototype.template = $("#tpl-tables").html();
 
+    Tables.prototype.template_table = $("#tpl-table").html();
+
+    Tables.prototype.template_row = $("#tpl-row").html();
+
     Tables.prototype.className = "page";
 
     Tables.prototype.events = {};
 
+    Tables.prototype.output = [];
+
     Tables.prototype.initialize = function() {
-      _.bindAll(this, 'render');
+      Backbone.on('pushed:tables', this.create_tables, this);
+      _.bindAll(this, 'create_table', 'create_tables', 'render');
       return Tracker.Views.Page.prototype.initialize.call(this);
+    };
+
+    Tables.prototype.create_table = function(number) {
+      var json, partials;
+      partials = {
+        "row": $("#tpl-row").html()
+      };
+      json = {
+        first: number,
+        seconds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      };
+      return this.output.push(Mustache.to_html(this.template_table, json, partials));
     };
 
     Tables.prototype.render = function() {
       this.$el.html(this.template);
       return this;
+    };
+
+    Tables.prototype.create_tables = function() {
+      var number, _i;
+      for (number = _i = 0; _i <= 10; number = ++_i) {
+        this.create_table(number);
+      }
+      return $("#panel-tables").html(this.output);
     };
 
     return Tables;

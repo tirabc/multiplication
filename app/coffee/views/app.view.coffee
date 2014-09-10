@@ -9,6 +9,7 @@ class Tracker.Views.App extends Backbone.View
   previous: null
   current: null
   stack_el: "#stack"
+  transitionend: false
 
   initialize: () ->
     _.bindAll(@,'render','push','navigate')
@@ -47,7 +48,7 @@ class Tracker.Views.App extends Backbone.View
         @current.$el.one('transitionend',(e)=>
             #@previous.$el.hide()
             #@previous.$el.remove()
-          @previous.$el.addClass("right").removeClass("left")
+          @previous.$el.addClass("right").removeClass("left") if @previous
         )
       ,20)
     

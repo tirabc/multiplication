@@ -3,7 +3,7 @@
   <head>
     <title>Multiplication</title>
     <meta charset="utf-8">
-    <!--<meta name="viewport" content="initial-scale=1.0, user-scalable=yes">-->
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=yes">
     <link rel="stylesheet" href="public/css/jquery.nouislider.css" type="text/css"/>
     <link rel="stylesheet" href="public/css/main.css" type="text/css"/>
     <link rel="stylesheet" href="public/css/style.css" type="text/css"/>
@@ -85,8 +85,7 @@
         <span class="grid-item one-sixth symbol">x</span>
         <span class="grid-item one-sixth symbol">{{second}}</span>
         <span class="grid-item one-sixth symbol">=</span>
-        <span class="grid-item one-sixth symbol result">&nbsp;</span>
-        <span class="grid-item one-sixth symbol" id="runner"></span>
+        <span class="grid-item one-third symbol result">&nbsp;</span>
       </div>
       
       <div class="keyboard grid grid-gutter-none">
@@ -175,6 +174,14 @@
             <div id="slider"></div>
           </div>
         </div>
+        <div class="island">
+          <div class="option-label">
+            <p class="grid-item one-whole">Version</p>
+          </div>
+          <div class="option-wrapper">
+            <p class="grid-item one-whole">2014/09/10-09:24</p>
+          </div>
+        </div>
       </div>
         
     </script>
@@ -182,14 +189,44 @@
     <script type="text/template" id="tpl-gamify">
     
       <div class="gamify">
-        <div class="inner" style="background:#FFF url({{image}}) no-repeat">
-          <p class="h2">{{score}}</p>
-          <p class="h3">Bien joué !</p>
-          <button class="button button-large">Continuer</button>
+        <div class="inner">
+          <div class="texts">
+            <p class="h2">{{score}}</p>
+            <p class="h3">Bien joué !</p>
+            <button class="button button-large">Continuer</button>
+          </div>
+          <div class="picture">
+            <img src="{{image}}" class="responsive-picture" alt="Super !"/>
+          </div>
         </div>
         <div class="overlay"></div>
       </div>
       
+    </script>
+    
+    <script type="text/template" id="tpl-row">
+    
+      <p class="row grid-item one-whole">
+        <span class="grid-item one-fifth">{{first}}</span>
+        <span class="grid-item one-fifth">&times;</span>
+        <span class="grid-item one-fifth">{{.}}</span>
+        <span class="grid-item one-fifth">=</span>
+        <span class="grid-item one-fifth">{{result}}</span>
+      </p>
+    
+    </script>
+    
+    <script type="text/template" id="tpl-table">
+    
+    <div grid-item one-whole">
+      <h2 class="h2">{{first}}</h2>
+      <div class="rows">
+        {{#seconds}}
+          {{>row}}
+        {{/seconds}}
+      </div>
+    </div>
+    
     </script>
 
     <!-- END TEMPLATES -->

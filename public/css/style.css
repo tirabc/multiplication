@@ -86,11 +86,11 @@
   bottom: 0;
   left: 0;
   z-index: 100;
-  -webkit-transition: all 0.25s ease;
-  -moz-transition: all 0.25s ease;
-  -ms-transition: all 0.25s ease;
-  -o-transition: all 0.25s ease;
-  transition: all 0.25s ease;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 .page.left {
   z-index: 0;
@@ -196,7 +196,7 @@
 .gamify .overlay {
   opacity: .7;
   position: absolute;
-  background: #555;
+  background: #000;
   width: 100%;
   height: 100%;
   top: 0;
@@ -229,6 +229,12 @@
 .option-label,
 .option-wrapper {
   padding: 1rem;
+}
+.responsive-picture {
+  max-height: 100%;
+}
+#panel-tables {
+  height: 100%;
 }
 * {
   -moz-box-sizing: border-box;

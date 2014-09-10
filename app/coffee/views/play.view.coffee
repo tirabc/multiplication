@@ -78,7 +78,15 @@ class Tracker.Views.Play extends Tracker.Views.Page
     else
       $(output).appendTo(@$el).fadeIn("fast")
       
-  close_gamify: () ->
+    texts_height = $(".gamify .texts").height()
+    total_height = $(".gamify .inner").height()
+    picture_height = total_height - texts_height
+    console.log(picture_height)
+    $(".gamify .picture").css("height",parseInt(picture_height))
+      
+  close_gamify: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
     $(".gamify").fadeOut("fast")
   
   numberkey: (e) ->
@@ -112,7 +120,9 @@ class Tracker.Views.Play extends Tracker.Views.Page
     if(@score && @score % 5 == 0)
       @gamify()
 
-  close_feedback: () ->
+  close_feedback: (e) ->
+    e.preventDefault()
+    e.stopPropagation()
     if(@correct)
       @reset()
       @correct = false

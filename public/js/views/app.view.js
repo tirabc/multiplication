@@ -28,6 +28,8 @@
 
     App.prototype.stack_el = "#stack";
 
+    App.prototype.transitionend = false;
+
     App.prototype.initialize = function() {
       return _.bindAll(this, 'render', 'push', 'navigate');
     };
@@ -54,7 +56,9 @@
           return function() {
             _this.current.$el.addClass("center").removeClass("right");
             return _this.current.$el.one('transitionend', function(e) {
-              return _this.previous.$el.addClass("right").removeClass("left");
+              if (_this.previous) {
+                return _this.previous.$el.addClass("right").removeClass("left");
+              }
             });
           };
         })(this), 20);
