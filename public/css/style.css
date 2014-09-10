@@ -236,6 +236,12 @@
 #panel-tables {
   height: 100%;
 }
+.height-fifty {
+  height: 50%;
+}
+.height-fifty .link {
+  height: 100%;
+}
 * {
   -moz-box-sizing: border-box;
   box-sizing: border-box;

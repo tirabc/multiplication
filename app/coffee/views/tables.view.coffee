@@ -22,6 +22,7 @@ class Tracker.Views.Tables extends Tracker.Views.Page
     @output.push(Mustache.to_html(@template_table,json,partials))
     
     
+    
   render: () ->
     
     #partials =
